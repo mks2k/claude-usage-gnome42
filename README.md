@@ -38,7 +38,7 @@ command uses). **Nothing is sent to any third party.** It writes a summary to
 ## Install
 
 ```bash
-git clone https://github.com/mikaelsanP/claude-usage-gnome42.git
+git clone https://github.com/mks2k/claude-usage-gnome42.git
 cd claude-usage-gnome42
 ./install.sh
 ```
