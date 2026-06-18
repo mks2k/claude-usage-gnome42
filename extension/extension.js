@@ -1,10 +1,11 @@
 'use strict';
 
-const { St, GLib, Clutter, GObject } = imports.gi;
+const { St, GLib, Gio, Clutter, GObject } = imports.gi;
 const ByteArray = imports.byteArray;
 const Main = imports.ui.main;
 const PanelMenu = imports.ui.panelMenu;
 const PopupMenu = imports.ui.popupMenu;
+const Me = imports.misc.extensionUtils.getCurrentExtension();
 
 const HOME = GLib.get_home_dir();
 const USAGE = HOME + '/.local/share/claude-usage/usage.json';
@@ -36,11 +37,20 @@ class ClaudeIndicator extends PanelMenu.Button {
     _init() {
         super._init(0.0, 'Claude Usage', false);
 
-        this._label = new St.Label({
-            text: 'Claude …',
+        let box = new St.BoxLayout({ style_class: 'panel-status-menu-box' });
+        this._icon = new St.Icon({
+            gicon: Gio.icon_new_for_string(Me.path + '/claude.svg'),
+            style_class: 'system-status-icon',
             y_align: Clutter.ActorAlign.CENTER,
         });
-        this.add_child(this._label);
+        this._icon.set_style('margin-right: 4px; icon-size: 16px;');
+        this._label = new St.Label({
+            text: '…',
+            y_align: Clutter.ActorAlign.CENTER,
+        });
+        box.add_child(this._icon);
+        box.add_child(this._label);
+        this.add_child(box);
 
         this._rowPlan = new PopupMenu.PopupMenuItem('Plano: …', { reactive: false });
         this._rowSession = new PopupMenu.PopupMenuItem('Sessão (5h): …', { reactive: false });
@@ -69,14 +79,14 @@ class ClaudeIndicator extends PanelMenu.Button {
     refresh() {
         let d = _read();
         if (!d) {
-            this._label.text = 'Claude —';
+            this._label.text = '—';
             this._label.set_style('color: #9aa0a6;');
             this._rowUpdated.label.text = 'usage.json ainda não existe (rode o tracker)';
             return;
         }
         let s = _pct(d.session), w = _pct(d.week), o = _pct(d.week_opus);
-        let sTxt = s === null ? '—' : 'S ' + s + '%';
-        let wTxt = w === null ? '—' : 'Sem ' + w + '%';
+        let sTxt = s === null ? '—' : s + '%';
+        let wTxt = w === null ? '—' : w + '%';
         this._label.text = sTxt + ' · ' + wTxt;
 
         let maxPct = Math.max(s || 0, w || 0, o || 0);

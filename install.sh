@@ -14,6 +14,7 @@ mkdir -p "$EXT_DIR" "$DATA_DIR" "$UNIT_DIR"
 install -m 644 "$SRC/tracker.py"               "$DATA_DIR/tracker.py"
 install -m 644 "$SRC/extension/metadata.json"  "$EXT_DIR/metadata.json"
 install -m 644 "$SRC/extension/extension.js"   "$EXT_DIR/extension.js"
+install -m 644 "$SRC/extension/claude.svg"     "$EXT_DIR/claude.svg"
 install -m 644 "$SRC/systemd/claude-usage.service" "$UNIT_DIR/claude-usage.service"
 install -m 644 "$SRC/systemd/claude-usage.timer"   "$UNIT_DIR/claude-usage.timer"
 
