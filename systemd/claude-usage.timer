@@ -1,0 +1,10 @@
+[Unit]
+Description=Atualiza o uso do Claude Code a cada 2 minutos
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=2min
+Unit=claude-usage.service
+
+[Install]
+WantedBy=timers.target

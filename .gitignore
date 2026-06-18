@@ -1,0 +1,5 @@
+# dados gerados em runtime (nunca versionar — pode conter % de uso)
+usage.json
+*.tmp
+__pycache__/
+*.pyc

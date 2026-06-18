@@ -1,0 +1,6 @@
+[Unit]
+Description=Claude Usage — busca o uso do Claude Code (grava usage.json)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 %h/.local/share/claude-usage/tracker.py

@@ -1,0 +1,7 @@
+{
+  "uuid": "claude-usage@local",
+  "name": "Claude Usage",
+  "description": "Mostra o uso do Claude Code (sessão 5h + semana, com reset) na barra do topo. Lê ~/.local/share/claude-usage/usage.json (populado pelo timer claude-usage). Feito pro GNOME 42.",
+  "shell-version": ["42"],
+  "version": 1
+}
