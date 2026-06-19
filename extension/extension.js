@@ -51,6 +51,8 @@ class ClaudeIndicator extends PanelMenu.Button {
         box.add_child(this._icon);
         box.add_child(this._label);
         this.add_child(box);
+        // Identidade visual: pílula coral (cor da marca Claude)
+        box.set_style('background-color: rgba(217,119,87,0.22); border-radius: 9px; padding: 0 8px;');
 
         this._rowPlan = new PopupMenu.PopupMenuItem('Plano: …', { reactive: false });
         this._rowSession = new PopupMenu.PopupMenuItem('Sessão (5h): …', { reactive: false });
